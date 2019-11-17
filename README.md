@@ -175,6 +175,22 @@ management 127.0.0.1 5555
 Refer to the OpenVPN documentation for further information on how to secure
 access to the management interface.
 
+## SELINUX
+
+SELINUX enabled systems may receive below errors
+
+```
+Connection refused to localhost:5555
+Connection refused to 127.0.0.1:5555
+MANAGEMENT: Socket bind failed on local address 127.0.0.1:5555: Permission denied
+```
+
+### To fix error may use `semanage`
+
+```
+semanage port -a -t http_port_t -p tcp 5555
+```
+
 
 ### Configure openvpn-monitor
 
